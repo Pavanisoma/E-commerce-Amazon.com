@@ -1,0 +1,30 @@
+
+.display_inline{
+    display:flex;
+}
+.coloring p {
+    color: white;
+} 
+.coloring h1 {
+    color: white;
+}
+.coloring{
+    color: white !important;
+}
+
+.block-example {
+    width: 20rem;
+    height: 50rem;
+    margin: 0.5rem;
+    background-color: rgb(250, 242, 242);
+    display: inline-block;
+}
+
+.block-cart {
+    width: 20rem;
+    height: 10rem;
+    margin: 0.5rem;
+    background-color: rgb(250, 242, 242);
+    display: inline-block;
+}
+

@@ -1,0 +1,92 @@
+version: '2'
+services:
+  kafka1:
+    image: wurstmeister/kafka:2.11-1.1.0
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_LOG_DIRS: /kafka
+      KAFKA_BROKER_ID: 1
+      KAFKA_CREATE_TOPICS: >
+                        admin-category-read:1:1,admin-stats-read:1:1,admin-order-read:1:1,
+                        customer-cart-read:2:1,customer-comments-read:2:1,customer-comments-read:2:1,
+                        customer-order-read:2:1,customer-profile-read:2:1,customer-votes-read:2:1,
+                        products-read:4:1,seller-products-read:2:1,seller-profile-read:1:2,seller-profile-read:1:1,
+                        admin-category-write:1:3,admin-order-write:2:3,comments-write:1:3,
+                        customer-cart-write:2:3,customer-order-write:3:3,customer-profile-write:1:3,login-write:3:1
+                        products-write:1:3,seller-order-write:1:3,seller-profile-write:1:3,signup-write:2:3
+                        response_topic-read:10:1,response_topic-write:10:1,customer-profile-addres-write:1:2,
+                        customer-profile-cards-write:2:1,customer-profile-votes-write:2:1,response_topic-read:10:1,response_topic-write:10:1
+      KAFKA_ADVERTISED_HOST_NAME: 52.36.13.211
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_LOG_RETENTION_HOURS: "168"
+      KAFKA_LOG_RETENTION_BYTES: "100000000"
+      KAFKA_ZOOKEEPER_CONNECT:  zoo1:2181,zoo2:2181,zoo3:2181
+
+  kafka2:
+    image: wurstmeister/kafka:2.11-1.1.0
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
+    ports:
+      - "9093:9092"
+    environment:
+      KAFKA_LOG_DIRS: /kafka
+      KAFKA_BROKER_ID: 2
+      KAFKA_ADVERTISED_HOST_NAME: 52.36.13.211
+      KAFKA_ADVERTISED_PORT: 9093
+      KAFKA_LOG_RETENTION_HOURS: "168"
+      KAFKA_LOG_RETENTION_BYTES: "100000000"
+      KAFKA_ZOOKEEPER_CONNECT:  zoo1:2181,zoo2:2181,zoo3:2181
+
+  kafka3:
+    image: wurstmeister/kafka:2.11-1.1.0
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
+    ports:
+      - "9094:9092"
+    environment:
+      KAFKA_LOG_DIRS: /kafka
+      KAFKA_BROKER_ID: 3
+      KAFKA_ADVERTISED_HOST_NAME: 52.36.13.211
+      KAFKA_ADVERTISED_PORT: 9094
+      KAFKA_LOG_RETENTION_HOURS: "168"
+      KAFKA_LOG_RETENTION_BYTES: "100000000"
+      KAFKA_ZOOKEEPER_CONNECT:  zoo1:2181,zoo2:2181,zoo3:2181
+
+  zoo1:
+    image: elevy/zookeeper:latest
+    environment:
+      MYID: 1
+      SERVERS: zoo1,zoo2,zoo3
+    ports:
+      - "2181:2181"
+      - "2888"
+      - "3888"
+
+  zoo2:
+    image: elevy/zookeeper:latest
+    environment:
+      MYID: 2
+      SERVERS: zoo1,zoo2,zoo3
+    ports:
+      - "2182:2181"
+      - "2888"
+      - "3888"
+
+  zoo3:
+    image: elevy/zookeeper:latest
+    environment:
+      MYID: 3
+      SERVERS: zoo1,zoo2,zoo3
+    ports:
+      - "2183:2181"
+      - "2888"
+      - "3888"

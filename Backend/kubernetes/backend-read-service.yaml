@@ -1,0 +1,56 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2020-04-30T01:24:56Z"
+    labels:
+      app: backend-read
+    name: backend-read
+    namespace: default
+    resourceVersion: "2373"
+    selfLink: /api/v1/namespaces/default/services/backend-read
+    uid: 08ec729d-df9b-4679-a8cc-7f2e0621aee7
+  spec:
+    clusterIP: 10.111.59.75
+    externalTrafficPolicy: Cluster
+    ports:
+    - nodePort: 30211
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+    selector:
+      app: backend-read
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: localhost
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2020-04-30T00:59:35Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "147"
+    selfLink: /api/v1/namespaces/default/services/kubernetes
+    uid: 01ec8c63-fd1d-46a8-8cbe-c6d96e115cf5
+  spec:
+    clusterIP: 10.96.0.1
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 6443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
