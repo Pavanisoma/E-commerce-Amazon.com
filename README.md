@@ -1,4 +1,4 @@
-#E-commerce-Amazon.com(React, Redux, Node.js, MySQL, MongoDB, Kafka, Kubernetes):)
+# E-commerce-Amazon.com (React, Redux, Node.js, MySQL, MongoDB, Kafka, Kubernetes)
 
 
 • Developed a prototype for the distribution and handling of heavy traffics received by E-commerce websites. 
